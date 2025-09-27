@@ -56,5 +56,9 @@ jobs:
     - name: Send notification on failure
       if: failure()
       run: |
-        echo "❌ 登录或签到失败"
-        echo "请检查日志和截图"
+        curl -X POST "${{ secrets.WEBHOOK_URL }}" \
+        -H "Content-Type: application/json;charset=utf-8" \
+        -d '{
+          "title": "ptcafe签到失败",
+          "desp":  "❌ PTCafe 自动签到失败\n时间: '"$(date)"'\n请检查 GitHub Actions 日志和截图\n链接: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        }'
