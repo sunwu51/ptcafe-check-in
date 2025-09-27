@@ -71,8 +71,12 @@ test('login page', async ({ page }) => {
       await page.waitForLoadState('networkidle')
       loginSuccess = true
       console.log('签到完成');
+      break; // 立即跳出循环
     } catch (error) {
       console.error('执行过程中出现错误:', error);
+      if (loginSuccess) {
+        break; // 如果已经登录成功，即使出错也跳出循环
+      }
     }
   }
   // 截图保存
