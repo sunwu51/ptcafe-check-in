@@ -33,14 +33,14 @@ jobs:
       env:
         OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         USERNAME: ${{ secrets.USERNAME1 }}
-        PASSWORD: ${{ secrets.PASSWORD2 }}
+        PASSWORD: ${{ secrets.PASSWORD1 }}
         NODE_ENV: production
       run: npx playwright test
     
     - name: Run login and check-in for account2
       env:
         OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        USERNAME: ${{ secrets.USERNAME1 }}
+        USERNAME: ${{ secrets.USERNAME2 }}
         PASSWORD: ${{ secrets.PASSWORD2 }}
         NODE_ENV: production
       run: npx playwright test
