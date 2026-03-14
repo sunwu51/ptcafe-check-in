@@ -31,17 +31,17 @@ jobs:
       
     - name: Run login and check-in for account1
       env:
-        OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        USERNAME: ${{ secrets.USERNAME1 }}
-        PASSWORD: ${{ secrets.PASSWORD1 }}
+        SILICONCLOUD_API_KEY: ${{ secrets.SILICONCLOUD_API_KEY }}
+        PTCAFE_USERNAME: ${{ secrets.USERNAME1 }}
+        PTCAFE_PASSWORD: ${{ secrets.PASSWORD1 }}
         NODE_ENV: production
       run: npx playwright test
     
     - name: Run login and check-in for account2
       env:
-        OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        USERNAME: ${{ secrets.USERNAME2 }}
-        PASSWORD: ${{ secrets.PASSWORD2 }}
+        SILICONCLOUD_API_KEY: ${{ secrets.SILICONCLOUD_API_KEY }}
+        PTCAFE_USERNAME: ${{ secrets.USERNAME2 }}
+        PTCAFE_PASSWORD: ${{ secrets.PASSWORD2 }}
         NODE_ENV: production
       run: npx playwright test
       

@@ -36,11 +36,11 @@ test('login page', async ({ page }) => {
       
       // 清空并填写用户名
       await page.fill('input.username', '');
-      await page.type('input.username', process.env.USERNAME!!, { delay: 100 });
+      await page.type('input.username', process.env.PTCAFE_USERNAME!!, { delay: 100 });
       
       // 清空并填写密码
       await page.fill('input.password', '');
-      await page.type('input.password', process.env.PASSWORD!!, { delay: 100 });
+      await page.type('input.password', process.env.PTCAFE_PASSWORD!!, { delay: 100 });
 
       // 清空并填写验证码
       await page.fill('input[name=imagestring]', '')
@@ -96,17 +96,17 @@ test('login page', async ({ page }) => {
 async function recognizeCaptcha(imageUrl) {
   try {
     console.log('正在识别验证码图片:', imageUrl);
-    const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
-    const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY
+    const SILICONCLOUD_URL = 'https://api.siliconflow.cn/v1/chat/completions'
+    const SILICONCLOUD_API_KEY = process.env.SILICONCLOUD_API_KEY
 
-    const response = await fetch(OPENROUTER_URL, {
+    const response = await fetch(SILICONCLOUD_URL, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+        'Authorization': `Bearer ${SILICONCLOUD_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'anthropic/claude-sonnet-4',
+        model: 'Qwen/Qwen3-VL-32B-Instruct',
         messages: [
           {
             role: 'user',
@@ -131,7 +131,7 @@ async function recognizeCaptcha(imageUrl) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(`OpenRouter API 请求失败: ${response.status} ${response.statusText}\n${errorText}`);
+      throw new Error(`SiliconCloud API 请求失败: ${response.status} ${response.statusText}\n${errorText}`);
     }
 
     const data = await response.json();
